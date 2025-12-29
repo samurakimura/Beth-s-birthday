@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy 23rd Birthday Beth! 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="start-overlay">
+        <div class="overlay-content">
+            <h1>HAPPY BIRTHDAY BETH 💜</h1>
+            <p>Turn up your volume!</p>
+            <button id="enter-btn">ENTER PARTY 🎉</button>
+        </div>
+    </div>
+
+    <button id="music-btn" class="floating-btn">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="music/American Authors - Best Day Of My Life (Lyrics) - 7clouds.mp3" type="audio/mpeg">
+    </audio>
+
+    <header class="hero">
+        <div id="balloon-container"></div> <div class="hero-content">
+            <p class="subtitle">LEVEL 23 UNLOCKED</p>
+            <h1 class="glow-title">HAPPY BIRTHDAY <br> <span class="purple-highlight">BETH</span></h1>
+            <p class="instruction">👇 Scroll Down for the Cake 👇</p>
+        </div>
+    </header>
+
+    <section class="cake-page">
+        <div class="cake-wrapper">
+            <div class="text-ring">
+                <svg viewBox="0 0 500 500">
+                    <path id="curve" d="M250, 50 a200,200 0 1,1 0,400 a200,200 0 1,1 0,-400" fill="transparent" />
+                    <text class="curved-text">
+                        <textPath xlink:href="#curve" startOffset="0%">
+                            HAPPY 23RD BIRTHDAY BETH • THE BEST IS YET TO COME • 23 LOOKS GOOD ON YOU •
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+
+            <div class="cake-top" onclick="smashCake()">
+                <div class="frosting"></div>
+                <div class="cherry c1"></div><div class="cherry c2"></div>
+                <div class="cherry c3"></div><div class="cherry c4"></div>
+                <div class="cherry c5"></div><div class="cherry c6"></div>
+                <div class="cherry c7"></div><div class="cherry c8"></div>
+                
+                <div class="beads-container">
+                    <div class="bead-row">
+                        <span class="bead" style="color:#ff006e">B</span>
+                        <span class="bead" style="color:#3a86ff">E</span>
+                        <span class="bead" style="color:#fb5607">T</span>
+                        <span class="bead" style="color:#8338ec">H</span>
+                    </div>
+                    <div class="bead-row">
+                        <span class="bead">2</span>
+                        <span class="bead">3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-purple">
+        <div class="container">
+            <h2 class="section-header">A Little Surprise 🎁</h2>
+            <p style="margin-bottom:20px; opacity:0.8;">Tap the box to open!</p>
+            
+            <div class="gift-box-wrapper" id="gift-box" onclick="unwrapGift()">
+                <div class="gift-lid"></div>
+                <div class="gift-body">
+                    <div class="gift-bow"></div>
+                    <span>TAP ME</span>
+                </div>
+            </div>
+
+            <div id="love-letter" class="letter-hidden">
+                <div class="paper">
+                    <h3>Dearest Beth,</h3>
+                    <p>
+                        Welcome to your Golden Year!<br>
+                        23 looks dangerously good on you. You bring so much color and joy into the world, just by being you.<br><br>
+                        You're proof that getting older just means getting nicer and cuter!<br>
+                        I hope your 23rd year is filled with magic, laughter, and beautiful memories.<br><br>
+                        <b>To more in Life! 💜💛</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-black">
+        <div class="container">
+            <h2 class="section-header">Some Iconic Moments 📸</h2>
+            <div class="masonry-10">
+                <div class="photo-card"><img src="img/1.jpeg" alt="Memory 1"></div>
+                <div class="photo-card"><img src="img/2.jpeg" alt="Memory 2"></div>
+                <div class="photo-card"><img src="img/3.jpeg" alt="Memory 3"></div>
+                <div class="photo-card"><img src="img/4.jpeg" alt="Memory 4"></div>
+                <div class="photo-card"><img src="img/5.jpeg" alt="Memory 5"></div>
+                <div class="photo-card"><img src="img/6.jpeg" alt="Memory 6"></div>
+                <div class="photo-card"><img src="img/7.jpeg" alt="Memory 7"></div>
+                <div class="photo-card"><img src="img/8.jpeg" alt="Memory 8"></div>
+                <div class="photo-card"><img src="img/9.jpeg" alt="Memory 9"></div>
+                <div class="photo-card"><img src="img/10.jpeg" alt="Memory 10"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-purple video-section">
+        <div class="container">
+            <h2 class="section-header">Cinema Mode 🎬</h2>
+            
+            <div class="video-stack">
+                <div class="vid-frame">
+                    <video controls><source src="vids/kim1.mp4" type="video/mp4"></video>
+                </div>
+                <div class="vid-frame">
+                    <video controls><source src="vids/kim2.mp4" type="video/mp4"></video>
+                </div>
+                <div class="vid-frame">
+                    <video controls><source src="vids/kim3.mp4" type="video/mp4"></video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Tap anywhere for confetti! 🎉</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
