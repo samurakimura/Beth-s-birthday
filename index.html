@@ -117,7 +117,7 @@
         .gift-bow { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 60px; height: 30px; background: var(--gold); border-radius: 50% 50% 0 0; }
         .gift-box-wrapper.open .gift-lid { transform: translateY(-50px) rotate(-20deg); opacity: 0; }
         .letter-hidden { max-height: 0; overflow: hidden; transition: 1s; opacity: 0; }
-        .letter-hidden.reveal { max-height: 500px; opacity: 1; margin-top: 20px; }
+        .letter-hidden.reveal { max-height: 800px; opacity: 1; margin-top: 20px; } /* Increased height for longer letter */
         .paper { background: white; color: black; padding: 20px; transform: rotate(-2deg); max-width: 500px; margin: 0 auto; font-family: 'Courier Prime', monospace; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
         /* GALLERY */
@@ -128,10 +128,26 @@
         .photo-card:hover { transform: scale(1.05); z-index: 2; border-color: var(--gold); }
         .photo-card img { width: 100%; display: block; }
 
-        /* VIDEO */
+        /* VIDEO (FIXED OVERLAPPING) */
         .video-section { border-top: 4px solid var(--gold); padding-bottom: 100px; }
-        .video-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-        .vid-frame { width: 100%; max-width: 350px; border: 4px solid white; border-radius: 10px; background: black; box-shadow: 0 10px 20px rgba(0,0,0,0.3); overflow: hidden; }
+        .video-stack { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; 
+            justify-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .vid-frame { 
+            width: 100%; 
+            max-width: 350px; 
+            border: 4px solid white; 
+            border-radius: 10px; 
+            background: black; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+            overflow: hidden; 
+        }
         .vid-frame video { width: 100%; display: block; }
 
         /* UTILS */
@@ -160,7 +176,8 @@
             .cake-top { width: 180px; height: 180px; }
             .masonry-10 { column-count: 1; }
             .hero h1 { font-size: 2.5rem; }
-            .vid-frame { max-width: 90vw; }
+            /* FORCE STACK ON MOBILE */
+            .video-stack { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -239,12 +256,11 @@
 
             <div id="love-letter" class="letter-hidden">
                 <div class="paper">
-                    <h3>Dearest Beth,</h3>
                     <p>
                         Welcome to your Golden Year!<br>
                         23 looks dangerously good on you, you bring so much color and joy into the world by just being you.<br><br>
                         You're proof that getting older just means getting nicer and cuter🤗.<br>
-                        May this new year of your life bring growth, confidence, and beautiful surprises—keep shining just the way you are. ✨💛
+                        May this new year of your life bring growth, confidence, and beautiful surprises—keep shining just the way you are. ✨💛<br>
                         I hope your 23rd year is filled with magic, laughter, and beautiful memories.<br><br>
                         <b>To more in life! 💜</b>
                     </p>
@@ -304,13 +320,18 @@
             // --- 1. ENTER PARTY ---
             enterBtn.addEventListener('click', () => {
                 const playPromise = audio.play();
+
                 if (playPromise !== undefined) {
                     playPromise.then(_ => {
                         playing = true;
                         musicBtn.innerText = "⏸";
                         musicBtn.classList.add('playing');
-                    }).catch(error => console.log("Audio play prevented:", error));
+                    })
+                    .catch(error => {
+                        console.log("Audio play prevented:", error);
+                    });
                 }
+                
                 overlay.classList.add('fade-out');
                 setTimeout(() => overlay.style.display = 'none', 1000);
                 createConfetti(window.innerWidth/2, window.innerHeight/2);
@@ -331,16 +352,23 @@
                 playing = !playing;
             });
 
-            // --- 3. AUTO-PAUSE MUSIC ON VIDEO PLAY (Your Request) ---
+            // --- 3. AUTO-PAUSE LOGIC ---
             const videos = document.querySelectorAll('video');
             videos.forEach(video => {
                 video.addEventListener('play', () => {
+                    // Pause Background Music
                     if(playing) {
                         audio.pause();
                         playing = false;
                         musicBtn.innerText = "🎵";
                         musicBtn.classList.remove('playing');
                     }
+                    // Pause other videos
+                    videos.forEach(otherVideo => {
+                        if (otherVideo !== video) {
+                            otherVideo.pause();
+                        }
+                    });
                 });
             });
 
